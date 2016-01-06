@@ -8,9 +8,13 @@ var gulp = require('gulp'),
     jsonminify = require('gulp-jsonminify'),
     imagemin = require('gulp-imagemin'),
     pngcrush = require('imagemin-pngcrush'),
-    concat = require('gulp-concat');
+    concat = require('gulp-concat'),
+    htmlmin = require('gulp-html-minifier'),
+    bower = require('gulp-bower');
 
 var env,
+    bowerSources,
+    htmlSources,
     jsSources,
     sassSources,
     jsonSources,
@@ -30,10 +34,19 @@ if (env==='development') {
 
 sassStyle = 'compressed';
 
+htmlSources = ['components/html/*.html'];
+bowerSources = ['bower_components/**/*.*'];
 jsSources = ['components/scripts/*.js'];
 sassSources = ['components/sass/style.scss'];
 jsonSources = ['components/scripts/*.json'];
 
+
+
+gulp.task('html', function() {
+  gulp.src(htmlSources)
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('./public/'))
+});
 
 gulp.task('js', function() {
   gulp.src(jsSources)
@@ -43,6 +56,15 @@ gulp.task('js', function() {
     .pipe(gulp.dest(outputDir + 'js'))
     .pipe(connect.reload())
 });
+
+gulp.task('bower', function() {
+  gulp.src(bowerSources)
+    .pipe(gulp.dest(outputDir + 'js/lib'))
+    .pipe(connect.reload())
+});
+
+
+
 
 gulp.task('compass', function() {
   gulp.src(sassSources)
@@ -57,9 +79,10 @@ gulp.task('compass', function() {
 });
 
 gulp.task('watch', function() {
+  gulp.watch(bowerSources, ['bower']);
+  gulp.watch('components/html/*.html', ['html']);
   gulp.watch(jsSources, ['js']);
   gulp.watch('components/sass/*.scss', ['compass']);
-
   gulp.watch('components/js/*.json', ['json']);
   gulp.watch('components/images/*.*', ['images']);
 });
@@ -91,4 +114,4 @@ gulp.task('images', function() {
     .pipe(connect.reload())
 });
 
-gulp.task('default', ['json', 'js', 'compass', 'images', 'connect', 'watch']);
+gulp.task('default', ['json', 'bower', 'js', 'compass', 'images', 'connect', 'html', 'watch']);

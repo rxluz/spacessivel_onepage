@@ -33,13 +33,13 @@ var express = require('express');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.sendfile( __dirname + '/index.html');
+  res.sendfile( __dirname + '/public/index.html');
 });
 
 
 /* GET home page. */
 router.get('*', function(req, res) {
-  res.sendfile( __dirname + '/404.html');
+  res.sendfile( __dirname + '/public/404.html');
 });
 
 
