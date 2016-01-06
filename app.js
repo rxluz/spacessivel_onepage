@@ -9,11 +9,18 @@ var router = express.Router();
 var app = express();
 var port=process.env.PORT || 3000;
 
-var folder='builds/development/';
+var folder='builds/production/';
 
-if(process.env.PORT){
-  var folder='builds/production/';
+var os = require("os");
+
+if (os.hostname().indexOf("local") > -1){
+  var folder='builds/development/';
 }
+
+
+//var os = require("os");
+
+console.log(folder);
 
 
 // view engine setup
