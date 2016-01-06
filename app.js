@@ -9,12 +9,12 @@ var router = express.Router();
 var app = express();
 var port=process.env.PORT || 3000;
 
+var folder='builds/development/';
 
-var folder='builds/production/';
-
-if(port==3000){
-  var folder='builds/development/';
+if(process.env.PORT){
+  var folder='builds/production/';
 }
+
 
 // view engine setup
 app.set('views', path.join(__dirname, ''));
