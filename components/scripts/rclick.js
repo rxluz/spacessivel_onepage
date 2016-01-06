@@ -1,4 +1,6 @@
-var rclick = function() {
+var teste=['OLAR'];
+
+var OLARrclick = function() {
   var myNodes = document.querySelectorAll(".rclick");
 
   for (var i=0; i<myNodes.length; i++) {

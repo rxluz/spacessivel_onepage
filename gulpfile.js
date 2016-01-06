@@ -10,7 +10,10 @@ var gulp = require('gulp'),
     pngcrush = require('imagemin-pngcrush'),
     concat = require('gulp-concat'),
     htmlmin = require('gulp-html-minifier'),
-    bower = require('gulp-bower');
+    bower = require('gulp-bower'),
+    del = require('del'),
+    git = require("gulp-git"),
+    pipe = require("gulp-pipe");
 
 var env,
     bowerSources,
@@ -21,72 +24,112 @@ var env,
     outputDir,
     sassStyle;
 
-//env = process.env.NODE_ENV || 'development';
-env == 'production';
 
-if (env==='development') {
-  outputDir = 'public/';
-  sassStyle = 'expanded';
-} else {
-  outputDir = 'public/';
-  sassStyle = 'compressed';
-}
+///sassStyle = 'compressed';
 
-sassStyle = 'compressed';
-
-htmlSources = ['components/html/*.html'];
-bowerSources = ['bower_components/**/*.*'];
-jsSources = ['components/scripts/*.js'];
-sassSources = ['components/sass/style.scss'];
-jsonSources = ['components/scripts/*.json'];
+htmlSources = ['./components/html/*.html'];
+bowerSources = ['./bower_components/**/*.*'];
+jsSources = ['./components/scripts/*.js'];
+sassSources = ['./components/sass/style.scss'];
+jsonSources = ['./components/scripts/*.json'];
 
 
 
+/*
+ * Generate html files in dev mode
+ */
 gulp.task('html', function() {
+  del(outputDir + '*.html');
   gulp.src(htmlSources)
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('./public/'))
+    .pipe(gulp.dest(outputDir))
 });
 
+/*
+ * Generate html files in prod mode
+ */
+gulp.task('html_prod', function() {
+  del(outputDir + '*.html');
+  gulp.src(htmlSources)
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest(outputDir))
+});
+
+
+/*
+ * Generate js files in dev mode
+ */
 gulp.task('js', function() {
+  del(outputDir + 'js/**/*.*');
+
   gulp.src(jsSources)
     .pipe(concat('script.js'))
-    .pipe(browserify())
+    .pipe(gulp.dest(outputDir + 'js'))
+    .pipe(connect.reload())
+});
+
+/*
+ * Generate js files in prod mode
+ */
+gulp.task('js_prod', function() {
+  del(outputDir + 'js/**/*.*');
+
+  gulp.src(jsSources)
+    .pipe(concat('script.js'))
     .pipe(uglify())
     .pipe(gulp.dest(outputDir + 'js'))
     .pipe(connect.reload())
 });
 
+/*
+ * Generate bower files
+ */
 gulp.task('bower', function() {
+  del(outputDir + 'libs/**/**');
+
   gulp.src(bowerSources)
-    .pipe(gulp.dest(outputDir + 'js/lib'))
+    .pipe(gulp.dest(outputDir + 'libs'))
     .pipe(connect.reload())
 });
 
 
-
-
+/*
+ * Generate sass files in dev mode
+ */
 gulp.task('compass', function() {
+  del(outputDir + 'css/**/*.*');
+
   gulp.src(sassSources)
     .pipe(compass({
       sass: 'components/sass',
       image: outputDir + 'images',
-      style: sassStyle
+      style: 'expanded'
     })
     .on('error', gutil.log))
     .pipe(gulp.dest(outputDir + 'css'))
     .pipe(connect.reload())
 });
 
-gulp.task('watch', function() {
-  gulp.watch(bowerSources, ['bower']);
-  gulp.watch('components/html/*.html', ['html']);
-  gulp.watch(jsSources, ['js']);
-  gulp.watch('components/sass/*.scss', ['compass']);
-  gulp.watch('components/js/*.json', ['json']);
-  gulp.watch('components/images/*.*', ['images']);
+/*
+ * Generate sass files in prod mode
+ */
+gulp.task('compass_prod', function() {
+  del(outputDir + 'css/**/*.*');
+
+  gulp.src(sassSources)
+    .pipe(compass({
+      sass: 'components/sass',
+      image: outputDir + 'images',
+      style: 'compressed'
+    })
+    .on('error', gutil.log))
+    .pipe(gulp.dest(outputDir + 'css'))
+    .pipe(connect.reload())
 });
 
+
+/*
+ * Auto reload page
+ */
 gulp.task('connect', function() {
   connect.server({
     root: outputDir,
@@ -94,6 +137,9 @@ gulp.task('connect', function() {
   });
 });
 
+/*
+ * Generate json  files in dev mode
+ */
 
 gulp.task('json', function() {
   gulp.src('components/scripts/*.json')
@@ -102,8 +148,29 @@ gulp.task('json', function() {
     .pipe(connect.reload())
 });
 
+/*
+ * Generate sass files in prod mode
+ */
+gulp.task('json_prod', function() {
+  gulp.src('components/scripts/*.json')
+    .pipe(gulp.dest(outputDir + 'js'))
+    .pipe(connect.reload())
+});
 
+
+/*
+ * Generate images files in dev mode
+ */
 gulp.task('images', function() {
+  gulp.src('components/images/*.*')
+    .pipe(gulp.dest(outputDir + 'images'))
+    .pipe(connect.reload())
+});
+
+/*
+ * Generate images files in prod mode
+ */
+gulp.task('images_prod', function() {
   gulp.src('components/images/*.*')
     .pipe(imagemin({
       progressive: true,
@@ -114,4 +181,47 @@ gulp.task('images', function() {
     .pipe(connect.reload())
 });
 
-gulp.task('default', ['json', 'bower', 'js', 'compass', 'images', 'connect', 'html', 'watch']);
+
+/*
+ * Monitor files to dev mode
+ */
+gulp.task('dev', function() {
+  //dev mode:
+  //dont compress html
+  //dont compress csss
+  //dont compress js
+
+  outputDir = './builds/development/';
+
+  gulp.start('js', 'bower', 'json', 'compass', 'images', 'connect', 'html');
+
+  gulp.watch('bower_components/**/*.*', ['bower']);
+  gulp.watch('components/html/*.html', ['html']);
+  gulp.watch(jsSources, ['js']);
+  gulp.watch('components/js/*.json', ['json']);
+  gulp.watch('components/sass/*.scss', ['compass']);
+  gulp.watch('components/images/*.*', ['images']);
+});
+
+
+/*
+ * Monitor files to prod mode
+ */
+gulp.task('prod', function() {
+  //prod mode:
+  //compress html
+  //compress csss
+  //compress js
+
+  outputDir = './builds/production/';
+
+  gulp.start('js_prod', 'bower', 'json_prod', 'compass_prod', 'images_prod', 'connect', 'html_prod');
+
+  outputDir = './builds/production/';
+  gulp.watch('bower_components/**/*.*', ['bower']);
+  gulp.watch('components/html/*.html', ['html_prod']);
+  gulp.watch(jsSources, ['js_prod']);
+  gulp.watch('components/js/*.json', ['json_prod']);
+  gulp.watch('components/sass/*.scss', ['compass_prod']);
+  gulp.watch('components/images/*.*', ['images_prod']);
+});

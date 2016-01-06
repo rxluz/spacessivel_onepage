@@ -7,6 +7,14 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 
 var app = express();
+var port=process.env.PORT || 3000;
+
+
+var folder='builds/development/';
+
+if(port==3000){
+  var folder='builds/development/';
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, ''));
@@ -16,7 +24,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+app.use(express.static(path.join(__dirname, folder)));
 
 //app.locals.appdata = require('./data.json');
 app.use('/', router);
@@ -28,19 +39,17 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-
 var express = require('express');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.sendfile( __dirname + '/public/index.html');
+  res.sendfile( __dirname + folder+'index.html');
 });
 
 
 /* GET home page. */
 router.get('*', function(req, res) {
-  res.sendfile( __dirname + '/public/404.html');
+  res.sendfile( __dirname + folder+'404.html');
 });
-
 
 module.exports = app;
