@@ -29,7 +29,7 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, folder)));
 
-//app.locals.appdata = require('./data.json');
+///app.locals.appdata = require('./data.json');
 app.use('/', router);
 
 /// catch 404 and forwarding to error handler
