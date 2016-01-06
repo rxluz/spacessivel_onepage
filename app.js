@@ -10,7 +10,7 @@ var app = express();
 var port=process.env.PORT || 3000;
 
 
-var folder='builds/development/';
+var folder='builds/production/';
 
 if(port==3000){
   var folder='builds/development/';
