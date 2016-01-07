@@ -230,7 +230,7 @@ gulp.task('json_prod', function() {
  * Generate images files in dev mode
  */
 gulp.task('images', function() {
-  gulp.src('components/images/*.*')
+  gulp.src('components/images/**/*.*')
     .pipe(gulp.dest(outputDirDev + 'images'))
     .pipe(connect.reload())
 });
@@ -239,7 +239,7 @@ gulp.task('images', function() {
  * Generate images files in prod mode
  */
 gulp.task('images_prod', function() {
-  gulp.src('components/images/*.*')
+  gulp.src('components/images/**/*.*')
     .pipe(imagemin({
       progressive: true,
       svgoPlugins: [{removeViewBox: false}],
