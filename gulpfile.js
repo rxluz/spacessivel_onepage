@@ -20,6 +20,7 @@ var gulp = require('gulp'),
 var env,
     bowerSources,
     htmlSources,
+    xmlSources,
     cssSources,
     jsSources,
     sassSources,
@@ -34,6 +35,7 @@ outputDir = './builds/production/';
 
 viewsSources = ['./components/views/*.html'];
 htmlSources = ['./components/html/*.html'];
+xmlSources = ['./components/html/*.xml'];
 bowerSources = ['./bower_components/**/*.*'];
 jsSources = ['./components/scripts/app.js', './components/scripts/services/authentication.js', './components/scripts/controllers/*.js'];
 sassSources = ['./components/sass/style.scss'];
@@ -91,6 +93,28 @@ gulp.task('html_prod', function() {
 });
 
 
+
+/*
+ * Generate xml files in dev mode
+ */
+gulp.task('xml', function() {
+  del(outputDirDev + '*.xml');
+  gulp.src(xmlSources)
+    .pipe(gulp.dest(outputDirDev))
+    .pipe(connect.reload())
+});
+
+/*
+ * Generate xml files in prod mode
+ */
+gulp.task('xml_prod', function() {
+  del(outputDir + '*.xml');
+  gulp.src(xmlSources)
+    .pipe(gulp.dest(outputDir))
+    .pipe(connect.reload())
+});
+
+
 /*
  * Generate js files in dev mode
  */
@@ -99,7 +123,7 @@ gulp.task('js', function() {
 
   gulp.src(jsSources)
     .pipe(concat('script.js'))
-    
+
     .pipe(browserify({
       insertGlobals : true,
       debug : !gulp.env.production
@@ -270,9 +294,10 @@ gulp.task('dev', function() {
   //dont compress csss
   //dont compress js
 
-  gulp.start('js',  'json', 'css', 'compass', 'images', 'connect', 'html', 'views');
+  gulp.start('js',  'json', 'css', 'compass', 'images', 'connect', 'html', 'xml', 'views');
 
   // gulp.watch('bower_components/**/*.*', ['bower']);
+  gulp.watch('components/html/*.xml', ['xml']);
   gulp.watch('components/html/*.html', ['html']);
   gulp.watch('components/views/*.html', ['views']);
   gulp.watch(jsSources, ['js']);
@@ -292,9 +317,10 @@ gulp.task('prod', function() {
   //compress csss
   //compress js
 
-  gulp.start('js_prod', 'json_prod', 'css_prod', 'compass_prod', 'images_prod', 'html_prod', 'views_prod');
+  gulp.start('js_prod', 'json_prod', 'css_prod', 'compass_prod', 'images_prod', 'xml_prod', 'html_prod', 'views_prod');
 
   gulp.watch('components/html/*.html', ['html_prod']);
+  gulp.watch('components/html/*.xml', ['xml_prod']);
   gulp.watch('components/views/*.html', ['views_prod']);
   gulp.watch(jsSources, ['js_prod']);
   gulp.watch('components/js/*.json', ['json_prod']);
