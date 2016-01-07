@@ -111,7 +111,7 @@ gulp.task('js_prod', function() {
       debug : !gulp.env.production
     }))
 
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest(outputDir + 'js'))
     .pipe(connect.reload())
 });
