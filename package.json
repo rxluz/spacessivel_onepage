@@ -8,6 +8,9 @@
   "dependencies": {
     "angular": "^1.4.8",
     "angular-animate": "^1.4.8",
+    "angular-aria": "^1.4.8",
+    "angular-material": "^1.0.1",
+    "angular-messages": "^1.4.8",
     "angular-route": "^1.4.8",
     "body-parser": "~1.0.0",
     "cookie-parser": "~1.0.1",

@@ -48,6 +48,7 @@ gulp.task('views', function() {
   del(outputDirDev + 'views/*.html');
   gulp.src(viewsSources)
     .pipe(gulp.dest(outputDirDev+"views/"))
+    .pipe(connect.reload())
 });
 
 /*
@@ -58,6 +59,7 @@ gulp.task('views_prod', function() {
   gulp.src(viewsSources)
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest(outputDir+"views/"))
+    .pipe(connect.reload())
 });
 
 
@@ -69,6 +71,7 @@ gulp.task('html', function() {
   del(outputDirDev + '*.html');
   gulp.src(htmlSources)
     .pipe(gulp.dest(outputDirDev))
+    .pipe(connect.reload())
 });
 
 /*
@@ -79,6 +82,7 @@ gulp.task('html_prod', function() {
   gulp.src(htmlSources)
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest(outputDir))
+    .pipe(connect.reload())
 });
 
 
