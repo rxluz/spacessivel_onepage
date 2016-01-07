@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     pngcrush = require('imagemin-pngcrush'),
     concat = require('gulp-concat'),
     htmlmin = require('gulp-html-minifier'),
+    special = require('gulp-special-html'),
     //bower = require('gulp-bower'),
     del = require('del'),
     //git = require("gulp-git"),
@@ -47,6 +48,7 @@ cssSources = ['./components/css/*.css'];
 gulp.task('views', function() {
   del(outputDirDev + 'views/*.html');
   gulp.src(viewsSources)
+    .pipe(special())
     .pipe(gulp.dest(outputDirDev+"views/"))
     .pipe(connect.reload())
 });
@@ -57,6 +59,7 @@ gulp.task('views', function() {
 gulp.task('views_prod', function() {
   del(outputDir + 'views/*.html');
   gulp.src(viewsSources)
+    .pipe(special())
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest(outputDir+"views/"))
     .pipe(connect.reload())
@@ -70,6 +73,7 @@ gulp.task('views_prod', function() {
 gulp.task('html', function() {
   del(outputDirDev + '*.html');
   gulp.src(htmlSources)
+    .pipe(special())
     .pipe(gulp.dest(outputDirDev))
     .pipe(connect.reload())
 });
@@ -80,6 +84,7 @@ gulp.task('html', function() {
 gulp.task('html_prod', function() {
   del(outputDir + '*.html');
   gulp.src(htmlSources)
+    .pipe(special())
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest(outputDir))
     .pipe(connect.reload())
@@ -94,6 +99,7 @@ gulp.task('js', function() {
 
   gulp.src(jsSources)
     .pipe(concat('script.js'))
+    
     .pipe(browserify({
       insertGlobals : true,
       debug : !gulp.env.production
@@ -110,6 +116,7 @@ gulp.task('js_prod', function() {
 
   gulp.src(jsSources)
     .pipe(concat('script.js'))
+
     .pipe(browserify({
       insertGlobals : true,
       debug : !gulp.env.production
