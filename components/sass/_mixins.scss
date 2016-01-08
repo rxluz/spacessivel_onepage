@@ -1,7 +1,7 @@
 // _mixins
 // ========
 @mixin backImage($image) {
-  background: url($image) no-repeat 50% 20% ;
+  background: url($image) no-repeat 60% 20% ;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
