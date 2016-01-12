@@ -1,3 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+button, select, html, textarea, input {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html, body {
+    height: 100%;
+    color: rgba(0, 0, 0, 0.87);
+    background: white;
+    position: relative;
+}
+
+html {
+    display: block;
+}
+
+
 /* video section */
 section.video{
   background-color: #a6d1c9;
@@ -214,16 +241,16 @@ section.email {
 
 /* social section */
 .social {
-  //medium screeen
-  @media screen and (max-width: $medium-small){
-    height: 1450px;
-  }
-
-  //large screen
-  @media screen and (min-width: $medium-small) {
-    height: 650px;
-  }
-
+  // //medium screeen
+  // @media screen and (max-width: $medium-small){
+  //   height: 1450px;
+  // }
+  //
+  // //large screen
+  // @media screen and (min-width: $medium-small) {
+  //   height: 650px;
+  // }
+  height: auto;
 
   background-color: #dc373e;
   overflow: hidden;
@@ -389,7 +416,7 @@ section.email {
 /* footer section */
 footer {
   background-color: #7E0017;
-  height: 154px;
+  height: auto;
   overflow: hidden;
   background-image: url("../images/appock_logo.png");
   background-repeat: no-repeat;
