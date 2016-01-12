@@ -124,10 +124,8 @@ gulp.task('js', function() {
 
   gulp.src(jsSources)
     .pipe(concat('script.js'))
-    .pipe(browserify({
-      insertGlobals : true,
-      debug : !gulp.env.production
-    }))
+    .pipe(browserify())
+    //.pipe(uglify())
     .pipe(gulp.dest(outputDirDev + 'js'))
     .pipe(connect.reload())
 });
@@ -140,13 +138,8 @@ gulp.task('js_prod', function() {
 
   gulp.src(jsSources)
     .pipe(concat('script.js'))
-
-    .pipe(browserify({
-      insertGlobals : true,
-      debug : !gulp.env.production
-    }))
-
-    //.pipe(uglify())
+    .pipe(browserify())
+    .pipe(uglify())
     .pipe(gulp.dest(outputDir + 'js'))
     .pipe(connect.reload())
 });
@@ -324,8 +317,8 @@ gulp.task('dev', function() {
   gulp.watch('components/html/*.xml', ['xml']);
   gulp.watch('components/html/*.html', ['html']);
   gulp.watch('components/views/*.html', ['views']);
-  gulp.watch(jsSources, ['js']);
-  gulp.watch('components/js/*.json', ['json']);
+  gulp.watch(jsSources, ['js', 'json']);
+  gulp.watch('components/scripts/*.json', ['json']);
   gulp.watch('components/css/*.css', ['css']);
   gulp.watch('components/css/fonts/*.*', ['font']);
   gulp.watch('components/sass/*.scss', ['compass']);
@@ -347,8 +340,8 @@ gulp.task('prod', function() {
   gulp.watch('components/html/*.html', ['html_prod']);
   gulp.watch('components/html/*.xml', ['xml_prod']);
   gulp.watch('components/views/*.html', ['views_prod']);
-  gulp.watch(jsSources, ['js_prod']);
-  gulp.watch('components/js/*.json', ['json_prod']);
+  gulp.watch(jsSources, ['js_prod', 'json_prod']);
+  gulp.watch('components/scripts/*.json', ['json_prod']);
   gulp.watch('components/css/*.css', ['css_prod']);
   gulp.watch('components/css/fonts/*.*', ['font_prod']);
   gulp.watch('components/sass/*.scss', ['compass_prod']);

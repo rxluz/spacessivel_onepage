@@ -2,11 +2,11 @@
  var angular = require("angular");
  require("angular-animate/angular-animate");
  require('angular-route/angular-route');
- require('angular-aria');
- require('angular-messages');
- require('angular-material');
+ //require('angular-aria');
+ //require('angular-messages');
+ //require('angular-material');
 
- module.exports = 'ngMaterial';
+ //module.exports = 'ngMaterial';
 //alert('helload');
 //alert('hi')
 

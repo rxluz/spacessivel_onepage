@@ -67,13 +67,13 @@ section.video{
         top: 47px;
         position: relative;
         text-align: justify;
-     }
+     } //text
 
-   }
-}
+   } //about
+} //video section
 
 /* email section */
-.email {
+section.email {
   background-color: #53afa0;
   height: 450px;
   overflow: hidden;
@@ -85,7 +85,7 @@ section.video{
   top: -3px;
 
   .arrow-down {
-    border-top: 18px solid #91bab3;
+    @include arrow_down(#91bab3);
   }
 
   .person-one{
@@ -149,6 +149,11 @@ section.video{
       }
     }
 
+    .text
+    {
+      color: white;
+    }
+
     display: inline-block;
 
     font-size: 2.2rem;
@@ -209,7 +214,17 @@ section.video{
 
 /* social section */
 .social {
-  height: 650px;
+  //medium screeen
+  @media screen and (max-width: $medium-small){
+    height: 1450px;
+  }
+
+  //large screen
+  @media screen and (min-width: $medium-small) {
+    height: 650px;
+  }
+
+
   background-color: #dc373e;
   overflow: hidden;
   background-repeat: no-repeat;
@@ -219,20 +234,156 @@ section.video{
   top: -3px;
 
   .arrow-down {
-    border-top: 18px solid #53afa0;
+    @include arrow_down(#53afa0);
   }
 
-}
+
+  .row {
+    width: 100%;
+    margin-bottom: 10px;
+
+    .title
+    {
+      //medium screeen
+      @media screen and (max-width: $medium-small)
+      {
+        width: 80%;
+      }
+
+      //large screen
+      @media screen and (min-width: $medium-small) {
+        width: 50%;
+      }
+
+      margin: 0 auto;
+      position: relative;
+      h2 {
+        color: white;
+        text-align: center;
+      }
+    } //title
+
+    .socicons {
+      //medium screeen
+      @media screen and (max-width: $medium-small)
+      {
+        width: 80%;
+        line-height: 100px;
+      }
+
+      //large screen
+      @media screen and (min-width: $medium-small) {
+        width: 40%;
+      }
+
+      width: 40%;
+      margin: 0 auto;
+      clear: both;
+      text-align: center;
+      border-top-color: #d03037;
+      border-top-width: 6px;
+      border-top-style: solid;
+      padding-top: 23px;
+
+      border-bottom-color: #d03037;
+      border-bottom-width: 6px;
+      border-bottom-style: solid;
+      padding-bottom: 23px;
+
+      i {
+        @include round_icons(#dc373e, #f8d8d8);
+        margin-left: 30px;
+        &:hover {
+          @include round_icons(#dc373e, white);
+          @include box-shadow(1px, 1px, 15px, rgba(0, 0, 0, 0.5));
+
+        }
+      } //icons
+    } //socicons
+
+    .column
+    {
+      //medium screeen
+      @media screen and (max-width: $medium-small){
+        width: 100%;
+        display: inline-block;
+        background-image: url(../images/icon_pin.png);
+        background-repeat: no-repeat;
+        background-position: top;
+      }
+
+      //large screen
+      @media screen and (min-width: $medium-small) {
+        width: 33%;
+        display: inline-block;
+        &:hover {
+          background-image: url(../images/icon_pin.png);
+          background-repeat: no-repeat;
+          background-position: top;
+        }
+      }
 
 
 
-.arrow-down {
-  margin: auto;
-  width: 0;
-  height: 0;
-  border-left: 34px solid transparent;
-  border-right: 34px solid transparent;
-}
+
+      .content {
+
+        //medium screeen
+        @media screen and (max-width: $medium-small)
+        {
+          margin: 34px;
+          padding-top: 25px;
+          padding-left: 25px;
+          padding-right: 25px;
+          padding-bottom: 25px;
+          height: 384px;
+          overflow: hidden;
+          color: white;
+          font-size: 1.3rem;
+          background-color: #b52a2a;
+          @include box-shadow(1px, 1px, 15px, rgba(0, 0, 0, 0.5));
+
+
+        }
+
+        //large screen
+        @media screen and (min-width: $medium-small) {
+          margin: 50px;
+          background-color: #d03037;
+          padding-top: 25px;
+          padding-left: 50px;
+          padding-right: 50px;
+          padding-bottom: 25px;
+          height: 256px;
+          overflow: hidden;
+          color: white;
+          &:hover {
+            background-color: #b52a2a;
+            @include box-shadow(1px, 1px, 15px, rgba(0, 0, 0, 0.5));
+          }
+
+        }
+
+
+
+
+        h3 {
+          text-align: center;
+          font-size: 1.4rem;
+          font-weight: normal;
+        }
+      }
+
+    }
+
+
+  }//row
+
+} //social
+
+
+
+
 
 
 /* footer section */
@@ -248,7 +399,7 @@ footer {
   position: relative;
 
   .arrow-down {
-    border-top: 18px solid #dc373e;
+    @include arrow_down(rgb(220, 55, 62));
   }
 
 
