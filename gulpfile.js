@@ -41,6 +41,7 @@ jsSources = ['./components/scripts/app.js', './components/scripts/services/authe
 sassSources = ['./components/sass/style.scss'];
 jsonSources = ['./components/scripts/*.json'];
 cssSources = ['./components/css/*.css'];
+fontSources = ['./components/css/fonts/*.*'];
 
 
 
@@ -139,7 +140,7 @@ gulp.task('js_prod', function() {
 
   gulp.src(jsSources)
     .pipe(concat('script.js'))
-    
+
     .pipe(browserify({
       insertGlobals : true,
       debug : !gulp.env.production
@@ -149,6 +150,30 @@ gulp.task('js_prod', function() {
     .pipe(gulp.dest(outputDir + 'js'))
     .pipe(connect.reload())
 });
+
+/*
+ * Generate font files in prod mode
+ */
+gulp.task('font_prod', function() {
+  del(outputDir + 'css/fonts/*.*');
+
+  gulp.src(fontSources)
+    .pipe(gulp.dest(outputDir + 'css/fonts'))
+    .pipe(connect.reload())
+});
+
+/*
+ * Generate font files in dev mode
+ */
+gulp.task('font', function() {
+  del(outputDirDev + 'css/fonts/*.*');
+
+  gulp.src(fontSources)
+    .pipe(gulp.dest(outputDirDev + 'css/fonts'))
+    .pipe(connect.reload())
+});
+
+
 
 /*
  * Generate css files in prod mode
@@ -293,7 +318,7 @@ gulp.task('dev', function() {
   //dont compress csss
   //dont compress js
 
-  gulp.start('js',  'json', 'css', 'compass', 'images', 'connect', 'html', 'xml', 'views');
+  gulp.start('js',  'json', 'css', 'font', 'compass', 'images', 'connect', 'html', 'xml', 'views');
 
   // gulp.watch('bower_components/**/*.*', ['bower']);
   gulp.watch('components/html/*.xml', ['xml']);
@@ -302,6 +327,7 @@ gulp.task('dev', function() {
   gulp.watch(jsSources, ['js']);
   gulp.watch('components/js/*.json', ['json']);
   gulp.watch('components/css/*.css', ['css']);
+  gulp.watch('components/css/fonts/*.*', ['font']);
   gulp.watch('components/sass/*.scss', ['compass']);
   gulp.watch('components/images/*.*', ['images']);
 });
@@ -316,7 +342,7 @@ gulp.task('prod', function() {
   //compress csss
   //compress js
 
-  gulp.start('js_prod', 'json_prod', 'css_prod', 'compass_prod', 'images_prod', 'xml_prod', 'html_prod', 'views_prod');
+  gulp.start('js_prod', 'json_prod', 'css_prod', 'font_prod', 'compass_prod', 'images_prod', 'xml_prod', 'html_prod', 'views_prod');
 
   gulp.watch('components/html/*.html', ['html_prod']);
   gulp.watch('components/html/*.xml', ['xml_prod']);
@@ -324,6 +350,7 @@ gulp.task('prod', function() {
   gulp.watch(jsSources, ['js_prod']);
   gulp.watch('components/js/*.json', ['json_prod']);
   gulp.watch('components/css/*.css', ['css_prod']);
+  gulp.watch('components/css/fonts/*.*', ['font_prod']);
   gulp.watch('components/sass/*.scss', ['compass_prod']);
   gulp.watch('components/images/*.*', ['images_prod']);
 });

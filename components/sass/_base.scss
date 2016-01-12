@@ -6,17 +6,8 @@ section.video{
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: 100%;
+  height: 702px;
 
-  //medium screeen
-  @media screen and (max-width: $medium-small) {
-     height: 602px;
-   }
-
-  //large screen
-   @media screen and (min-width: $medium-small) {
-     height: 702px;
-
-   }
 
    .logo-sp-back
    {
@@ -58,7 +49,7 @@ section.video{
      .text{
        //medium screeen
        @media screen and (max-width: $medium-small) {
-          width: 92%;
+          width: 87%;
           margin: 28px;
           color: gray;
           font-weight: 300;
@@ -143,26 +134,43 @@ section.video{
     //medium screeen
     @media screen and (max-width: $medium-small) {
       width: 92%;
+      .text
+      {
+        padding: 21px;
+      }
      }
 
     //large screen
     @media screen and (min-width: $medium-small) {
       width: 60%;
+      .text
+      {
+        padding: 41px;
+      }
     }
 
     display: inline-block;
 
     font-size: 2.2rem;
     text-align: center;
-    .text
-    {
-      padding: 41px;
-    }
+
 
     form {
-      background-color: #489989;
+      //medium screeen
+      @media screen and (max-width: $medium-small)
+      {
+        background-color: rgba(72, 153, 137, .5);
+        width: 93%;
+      }
+
+      //large screen
+      @media screen and (min-width: $medium-small) {
+        background-color: #489989;
+        width: 66%;
+      }
+
       border-radius: 37px;
-      width: 464px;
+
       height: 246px;
       text-align: center;
       margin: 0 auto;
@@ -174,27 +182,48 @@ section.video{
           font-size: 1.2rem;
           text-transform: uppercase;
           padding-left: 25px;
-      }
+      } //placeholder
 
       button{
-        @include btn_action(320px);
+
+        @include btn_action(85%);
       }
 
       input {
         height: 45px;
         margin-bottom: 22px;
-        width: 381px;
+        width: 84%;
         border-radius: 44px;
         color: #78bbaf;
         font-weight:300;
         font-size: 1.2rem;
+        border-color: transparent;
         padding-left: 25px;
-      }
+      } //input
 
     }//form
   }//center
 
 } //email
+
+
+/* social section */
+.social {
+  height: 650px;
+  background-color: #dc373e;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  width: 100%;
+  position: relative;
+  top: -3px;
+
+  .arrow-down {
+    border-top: 18px solid #53afa0;
+  }
+
+}
+
 
 
 .arrow-down {
@@ -209,15 +238,17 @@ section.video{
 /* footer section */
 footer {
   background-color: #7E0017;
-  height: 150px;
+  height: 154px;
   overflow: hidden;
   background-image: url("../images/appock_logo.png");
   background-repeat: no-repeat;
   background-position: bottom right;
   width: 100%;
+  top: -3px;
+  position: relative;
 
   .arrow-down {
-    border-top: 18px solid #CC242D;
+    border-top: 18px solid #dc373e;
   }
 
 
