@@ -12,9 +12,7 @@
 
 
 var spAcessLan = angular.module('spAcessLan', [
-  'ngRoute',
-  'ngMaterial',
-  'ngMessages'
+  'ngRoute'
 ]);
 
 

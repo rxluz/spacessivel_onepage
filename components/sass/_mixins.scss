@@ -32,3 +32,26 @@
     clear: both;
   }
 }
+
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  ::-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  ::-ms-input-placeholder      {@content}
+}
+
+
+@mixin btn_action($width) {
+  position: relative;
+  display: block;
+  background-color: #427197;
+  color: white;
+  border-radius: 23px;
+  width: $width;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  height: 44px;
+  top: 14px;
+  margin: 0 auto;
+}

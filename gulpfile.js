@@ -123,7 +123,6 @@ gulp.task('js', function() {
 
   gulp.src(jsSources)
     .pipe(concat('script.js'))
-
     .pipe(browserify({
       insertGlobals : true,
       debug : !gulp.env.production
@@ -140,7 +139,7 @@ gulp.task('js_prod', function() {
 
   gulp.src(jsSources)
     .pipe(concat('script.js'))
-
+    
     .pipe(browserify({
       insertGlobals : true,
       debug : !gulp.env.production

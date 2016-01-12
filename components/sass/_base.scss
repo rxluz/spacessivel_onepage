@@ -1,0 +1,236 @@
+/* video section */
+section.video{
+  background-color: #a6d1c9;
+
+  background-image: url("../images/back_video.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100%;
+
+  //medium screeen
+  @media screen and (max-width: $medium-small) {
+     height: 602px;
+   }
+
+  //large screen
+   @media screen and (min-width: $medium-small) {
+     height: 702px;
+
+   }
+
+   .logo-sp-back
+   {
+     //large screen
+      @media screen and (min-width: $medium-small) {
+             width: 33%;
+             float: left;
+             position: relative;
+
+             margin-top: 40px;
+             margin-left: 179px;
+      }
+
+     text-align: center;
+
+     //medium screeen
+     @media screen and (max-width: $medium-small) {
+        width: 100%;
+      }
+
+     img {
+       //medium screeen
+       @media screen and (max-width: $medium-small) {
+          width: auto;
+        }
+
+        //large screen
+         @media screen and (min-width: $medium-small) {
+           width: auto;
+         }
+     } //img-logo
+
+   } //logo-sp-back
+
+   .about{
+     width: 100%;
+     color: white;
+     font-size: 1.5rem;
+     .text{
+       //medium screeen
+       @media screen and (max-width: $medium-small) {
+          width: 92%;
+          margin: 28px;
+          color: gray;
+          font-weight: 300;
+        }
+
+        //large screen
+         @media screen and (min-width: $medium-small) {
+           width: 79%;
+         }
+
+         button{
+           @include btn_action(210px);
+         }
+
+        top: 47px;
+        position: relative;
+        text-align: justify;
+     }
+
+   }
+}
+
+/* email section */
+.email {
+  background-color: #53afa0;
+  height: 450px;
+  overflow: hidden;
+  background-image: url("../images/email_back.png");
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  width: 100%;
+  position: relative;
+  top: -3px;
+
+  .arrow-down {
+    border-top: 18px solid #91bab3;
+  }
+
+  .person-one{
+    //medium screeen
+    @media screen and (max-width: $medium-small) {
+      display:none;
+     }
+
+    //large screen
+    @media screen and (min-width: $medium-small) {
+      display: inline-block;
+      float: left;
+      width: 20%;
+
+    }
+
+    background-image: url(../images/person_one.jpg);
+    height: 61%;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+  }
+
+  .person-two {
+    //medium screeen
+    @media screen and (max-width: $medium-small) {
+      display:none;
+     }
+
+    //large screen
+    @media screen and (min-width: $medium-small) {
+      display: inline-block;
+      float: right;
+      width: 20%;
+    }
+
+
+
+
+    background-image: url(../images/person_two.jpg);
+    height: 71%;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+  }
+
+  .center {
+    //medium screeen
+    @media screen and (max-width: $medium-small) {
+      width: 92%;
+     }
+
+    //large screen
+    @media screen and (min-width: $medium-small) {
+      width: 60%;
+    }
+
+    display: inline-block;
+
+    font-size: 2.2rem;
+    text-align: center;
+    .text
+    {
+      padding: 41px;
+    }
+
+    form {
+      background-color: #489989;
+      border-radius: 37px;
+      width: 464px;
+      height: 246px;
+      text-align: center;
+      margin: 0 auto;
+      padding-top: 27px;
+
+      @include placeholder {
+          color: #78bbaf;
+          font-weight:100;
+          font-size: 1.2rem;
+          text-transform: uppercase;
+          padding-left: 25px;
+      }
+
+      button{
+        @include btn_action(320px);
+      }
+
+      input {
+        height: 45px;
+        margin-bottom: 22px;
+        width: 381px;
+        border-radius: 44px;
+        color: #78bbaf;
+        font-weight:300;
+        font-size: 1.2rem;
+        padding-left: 25px;
+      }
+
+    }//form
+  }//center
+
+} //email
+
+
+.arrow-down {
+  margin: auto;
+  width: 0;
+  height: 0;
+  border-left: 34px solid transparent;
+  border-right: 34px solid transparent;
+}
+
+
+/* footer section */
+footer {
+  background-color: #7E0017;
+  height: 150px;
+  overflow: hidden;
+  background-image: url("../images/appock_logo.png");
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  width: 100%;
+
+  .arrow-down {
+    border-top: 18px solid #CC242D;
+  }
+
+
+
+  .text {
+    color: white;
+    margin: auto;
+    padding: 50px;
+    text-align: center;
+    a {
+      color: white;
+      font-weight: bold;
+    }
+
+  }
+}
