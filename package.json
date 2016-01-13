@@ -12,6 +12,7 @@
     "angular-material": "^1.0.1",
     "angular-messages": "^1.4.8",
     "angular-route": "^1.4.8",
+    "angular-youtube-embed": "^1.1.1",
     "body-parser": "~1.0.0",
     "cookie-parser": "~1.0.1",
     "debug": "~0.7.4",

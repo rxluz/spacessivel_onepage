@@ -188,6 +188,12 @@ section.email {
 
 
     form {
+      fieldset {
+        border: none;
+        margin: 0px;
+        padding: 0;
+
+      }
       //medium screeen
       @media screen and (max-width: $medium-small)
       {
@@ -208,6 +214,15 @@ section.email {
       margin: 0 auto;
       padding-top: 27px;
 
+      label {
+        color: #0c3566;
+        font-size: 1.3rem;
+        padding: 0px;
+        margin-top: -7px;
+        position: relative;
+        display: block;
+      }
+
       @include placeholder {
           color: #78bbaf;
           font-weight:100;
@@ -217,7 +232,6 @@ section.email {
       } //placeholder
 
       button{
-
         @include btn_action(85%);
       }
 
@@ -231,7 +245,14 @@ section.email {
         font-size: 1.2rem;
         border-color: transparent;
         padding-left: 25px;
+
       } //input
+      input.ng-touched.ng-invalid {
+        border-color: #dc373e;
+        border-width: 2px;
+        border-style: dotted;
+      }
+
 
     }//form
   }//center

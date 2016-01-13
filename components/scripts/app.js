@@ -2,6 +2,9 @@
  var angular = require("angular");
  require("angular-animate/angular-animate");
  require('angular-route/angular-route');
+ require('ng-dialog');
+
+ //npm install
  //require('angular-aria');
  //require('angular-messages');
  //require('angular-material');
@@ -12,7 +15,7 @@
 
 
 var spAcessLan = angular.module('spAcessLan', [
-  'ngRoute'
+  'ngRoute', 'ngDialog'
 ]);
 
 
