@@ -44,6 +44,7 @@
 
 @mixin btn_action($width) {
   position: relative;
+  cursor: pointer;
   display: block;
   background-color: #427197;
   border-color: transparent;
@@ -60,6 +61,7 @@
   }
   &:disabled {
     background-color: gray;
+    cursor: no-drop;
   }
 }
 
@@ -73,15 +75,15 @@
   //border-top: 18px solid #53afa0;
 }
 
-@mixin round_icons($color, $backcolor)
+@mixin round_icons($color, $backcolor, $font_size: 2.0)
 {
   background-color: $backcolor;
-  width: 33px;
-  height: 33px;
+  width: #{16.5*$font_size}px;
+  height: #{16.5*$font_size}px;
   color: $color;
-  padding: 16px;
-  font-size: 2.0rem;
-  border-radius: 51px;
+  padding: #{8 * $font_size}px;
+  font-size: #{$font_size}rem;
+  border-radius: #{25.5 * $font_size}px;
 }
 
 @mixin box-shadow($top, $left, $blur, $color, $inset: false) {

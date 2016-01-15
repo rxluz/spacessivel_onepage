@@ -18,17 +18,24 @@
   <div class="row">
     <div class="column">
       <div class="content">
-        <h3>Sobre nós</h3>{{aboutUs}}
+        <h3>Sobre nós</h3>{{aboutUs  | toHtml}}
       </div>
     </div>
     <div class="column">
       <div class="content">
-        <h3>Blog</h3>{{blog}}
+        <h3>Blog</h3>
+
+          <article ng-repeat="feed in feeds | limitTo: 3">
+              <h5><a target="_blank" href="{{feed.link}}">{{feed.title}}</a></h5>
+              <p>{{feed.contentSnippet | viewBlog}} (..)
+<a target="_blank" href="{{feed.link}}"><i class="fa fa-external-link"></i></a>
+              </p>
+          </article>
       </div>
     </div>
     <div class="column">
       <div class="content">
-        <h3>Links úteis</h3>{{links}}
+        <h3>Contato</h3>{{links | toHtml}}
       </div>
     </div>
   </div>

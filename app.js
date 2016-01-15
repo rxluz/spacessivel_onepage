@@ -17,12 +17,11 @@ if (os.hostname().indexOf("local") > -1){
   var folder='builds/development/';
 }
 
-
 //var os = require("os");
 
+require("./components/server/medium.js");
+
 console.log(folder);
-
-
 // view engine setup
 app.set('views', path.join(__dirname, ''));
 app.set('view engine', 'ejs');
@@ -31,8 +30,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-
-
 
 app.use(express.static(path.join(__dirname, folder)));
 

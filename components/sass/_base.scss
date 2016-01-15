@@ -33,7 +33,7 @@ section.video{
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: 100%;
-  height: 702px;
+  height: 568px;
 
 
    .logo-sp-back
@@ -183,7 +183,8 @@ section.email {
 
     display: inline-block;
 
-    font-size: 2.2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
     text-align: center;
 
 
@@ -215,7 +216,7 @@ section.email {
       padding-top: 27px;
 
       label {
-        color: #0c3566;
+        color: white;
         font-size: 1.3rem;
         padding: 0px;
         margin-top: -7px;
@@ -251,6 +252,12 @@ section.email {
         border-color: #dc373e;
         border-width: 2px;
         border-style: dotted;
+      }
+
+
+      .fa-check
+      {
+        @include round_icons(white, #0c3566, 4.5);
       }
 
 
@@ -402,7 +409,7 @@ section.email {
           padding-left: 50px;
           padding-right: 50px;
           padding-bottom: 25px;
-          height: 256px;
+          height: 339px;
           overflow: hidden;
           color: white;
           &:hover {
@@ -420,6 +427,33 @@ section.email {
           font-size: 1.4rem;
           font-weight: normal;
         }
+
+        h5 {
+          text-align: left;
+          font-size: 1.1rem;
+          font-weight: normal;
+          margin: 0px;
+          a {
+            color: white;
+          }
+        }
+
+        p {
+          text-align: left;
+          font-size: 1.0rem;
+          font-weight: normal;
+          margin-top: 0px;
+          margin-bottom: 3px;
+          color: white;
+          a {
+            color: white;
+          }
+          i {
+            font-size: 0.7rem;
+          }
+        }
+
+
       }
 
     }

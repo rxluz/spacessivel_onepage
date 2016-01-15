@@ -6,11 +6,12 @@
       Se inscreva para saber as novidades
     </div>
     <form name="emailForm" id="emailForm" ng-submit="emailSave(emailForm)" novalidate>
-      <fieldset>
+      <fieldset ng-show="eml.send==false">
         <input type="text" name="nme"  ng-model="eml.nme" ng-required="true" placeholder="Nome"><br>
         <input type="email" name="email" ng-model="eml.email" ng-required="true" placeholder="Email">
       </fieldset>
-      <label ng-show="message">{{ message }}</label>
+      <label ng-show="message"><i class="fa fa-check"></i><br>
+        <br>{{ message }}</label>
       <label class="error validationerror" ng-show="emailForm.nme.$invalid && emailForm.nme.$touched && eml.send==false">
       Informe o seu nome.</label>
       <label class="error validationerror" ng-show="emailForm.email.$invalid && emailForm.email.$touched && eml.send==false">
