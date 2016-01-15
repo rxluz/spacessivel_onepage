@@ -1,9 +1,11 @@
 //#1
+ var Firebase = require('firebase');
  var angular = require("angular");
  require("angular-animate/angular-animate");
  require('angular-route/angular-route');
  require('ng-dialog');
  require('angular-sanitize');
+ require('angularfire');
 
  //npm install
  //require('angular-aria');
@@ -16,8 +18,8 @@
 
 
 var spAcessLan = angular.module('spAcessLan', [
-  'ngRoute', 'ngDialog', 'ngSanitize'
-]);
+  'ngRoute', 'ngDialog', 'ngSanitize', 'firebase'
+]).constant('FIREBASE_URL', 'https://spacessivelfire.firebaseio.com/');
 
 
 spAcessLan.config(['$routeProvider', function($routeProvider) {
@@ -56,10 +58,51 @@ spAcessLan.filter('viewBlog', ['$sce', function($sce){
   };
 }]);
 
-
+//TRATA AS STRINGS JSON PARA SEREM PROCESSADAS COMO HTML
 spAcessLan.filter('toHtml', ['$sce', function($sce){
   return function(val)
   {
     return $sce.trustAsHtml(val);
   };
 }]);
+
+
+
+//FIREBASE AUTH
+spAcessLan.factory('Authentication',
+  ['$rootScope', '$firebaseAuth', '$firebaseObject',
+  '$location', 'FIREBASE_URL',
+  function($rootScope, $firebaseAuth, $firebaseObject,
+    $location, FIREBASE_URL) {
+
+  var ref = new Firebase(FIREBASE_URL);
+  var auth = $firebaseAuth(ref);
+
+  auth.$onAuth(function(authUser) {
+    if (authUser) {
+      var userRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid );
+      var userObj = $firebaseObject(userRef);
+      $rootScope.currentUser = userObj;
+    } else {
+      $rootScope.currentUser = '';
+    }
+  });
+
+
+  return {
+    register: function(user) {
+      var regRef = new Firebase(FIREBASE_URL);
+
+      var postsRef = regRef.child("mailling");
+
+      var newPostRef = postsRef.push();
+      // we can also chain the two calls together
+      postsRef.push().set({
+        name: user.name,
+        email: user.email
+      });
+
+    } // register
+  };
+
+}]); //factory
