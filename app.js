@@ -19,7 +19,7 @@ if (os.hostname().indexOf("local") > -1){
 
 //var os = require("os");
 
-require("./components/server/medium.js");
+//require("./components/server/medium.js");
 
 console.log(folder);
 // view engine setup
