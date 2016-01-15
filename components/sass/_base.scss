@@ -384,6 +384,7 @@ section.email {
       //large screen
       @media screen and (min-width: $medium-small) {
         width: 33%;
+        vertical-align: top;
         display: inline-block;
         &:hover {
           background-image: url(../images/icon_pin.png);
