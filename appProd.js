@@ -9,10 +9,17 @@ var router = express.Router();
 var app = express();
 app.use(require('prerender-node').set('prerenderToken', 'oxdXV3HhiWWvzj6thKFj'));
 
+app.get('/*', function(req, res, next) {
+  if (req.headers.host.match(/^www/) !== null ) {
+    res.redirect('http://' + req.headers.host.replace(/^www\./, '') + req.url);
+  } else {
+    next();
+  }
+});
+
 var port=process.env.PORT || 3000;
 
 var folder='builds/production/';
-
 
 
 //var os = require("os");
