@@ -59,8 +59,10 @@ spAcessLan.filter('viewBlog', ['$sce', function($sce){
   return function(val)
   {
     val = val.replace('Continue reading on Medium »', '');
-    val = val.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+
     val = val.substring(0, 32);
+
+    //val = val + ' (..)<a target="_blank" href="{{feed.link}}"><i class="fa fa-external-link"></i>';
     return $sce.trustAsHtml(val);
   };
 }]);
