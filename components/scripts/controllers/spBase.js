@@ -10,6 +10,8 @@ spAcessLan
     $scope.aboutUs =response.aboutUs;
     //$scope.blog =response.blog;
     $scope.links = response.links;
+    $scope.videoCall = response.videoCall;
+
     //console.log("init: "+$scope.social.blog.feed);
 
     Feed.parseFeed($scope.social.blog.feed).then(function(res){
