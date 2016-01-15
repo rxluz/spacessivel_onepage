@@ -1,23 +1,41 @@
-<section class="email">
+<section class="email" title="Formulário de inscrição no SP Acessível">
   <div class="person-one"></div>
   <article class="center">
     <div class="arrow-down"></div>
-    <div class="text">
-      Se inscreva para saber as novidades
-    </div>
+    <header>
+      <div class="text">
+        Se inscreva para saber as novidades
+      </div>
+    </header>
+
     <form name="emailForm" id="emailForm" ng-submit="emailSave(emailForm)" novalidate>
       <fieldset ng-show="eml.send==false">
-        <input type="text" name="nme"  ng-model="eml.nme" ng-required="true" placeholder="Nome"><br>
-        <input type="email" name="email" ng-model="eml.email" ng-required="true" placeholder="Email">
+        <label class="acsbld" for="nme" aria-hidden="false">
+          Digite o seu nome
+        </label>
+        <input type="text" title="Digite o seu nome" id="nme" name="nme"  ng-model="eml.nme" ng-required="true" placeholder="Nome"  aria-hidden="false"><br>
+        <label class="acsbld" for="email" aria-hidden="false">
+          Digite o seu email
+        </label>
+        <input type="email" title="Digite o seu email para habilitar a opção de inscrever-se" id="email" name="email" ng-model="eml.email" ng-required="true" placeholder="Email"  aria-hidden="false">
       </fieldset>
-      <label ng-show="message"><i class="fa fa-check"></i><br>
-        <br>{{ message }}</label>
-      <label class="error validationerror" ng-show="emailForm.nme.$invalid && emailForm.nme.$touched && eml.send==false">
+
+
+      <label class="error validationerror"  aria-hidden="true" ng-show="emailForm.nme.$invalid && emailForm.nme.$touched && eml.send==false">
       Informe o seu nome.</label>
-      <label class="error validationerror" ng-show="emailForm.email.$invalid && emailForm.email.$touched && eml.send==false">
+
+      <label class="acsbld validationerror"   ng-show="(emailForm.nme.$invalid && emailForm.nme.$touched && eml.send==false) || (emailForm.email.$invalid && emailForm.email.$touched && eml.send==false)">
+      Por favor, informe corretamente o seu nome e email para concluir a sua inscrição</label>
+
+
+      <label class="error validationerror" aria-hidden="true" ng-show="emailForm.email.$invalid && emailForm.email.$touched && eml.send==false">
       Ops, seu email parece incorreto.</label>
 
-      <button type="submit" ng-disabled="emailForm.$invalid"  ng-show="eml.send==false">Inscrever-se</button>
+      <button title="Clique aqui para realizar a sua inscrição" type="submit" ng-disabled="emailForm.$invalid"  ng-show="eml.send==false">Inscrever-se</button>
+
+
+      <label ng-show="message" aria-hidden="false"><i class="fa fa-check"></i><br>
+        <br>{{ message }}</label>
     </form>
   </article>
   <div class="person-two"></div>

@@ -1,19 +1,20 @@
-<section class="video">
-  <div class="logo-sp-back">
-    <img ng-src="images/logo_spacessivel_medium.png" alt="" class="logo-sp">
-
-  </div>
+<section class="video" title="Apresentação e vídeo do SP Acessível">
+  <aside>
+    <div class="logo-sp-back">
+      <img ng-src="images/logo_spacessivel_medium.png" alt="Imagem do simbolo do SP Acessivel" class="logo-sp">
+    </div>
+  </aside>
 
   <article class="about">
     <div class="text">
-      <label ng-bind-html="videoCall | to_trusted"></label>
-      <button   ng-dialog="views/videoPopup.html"
+      <header>
+        <label ng-bind-html="videoCall | to_trusted"></label>
+      </header>
+      <label class="acsbld" for="videoWatch" aria-hidden="false" >Clique para assistir o vídeo de apresentação do SP Acessível.</label></p>
+      <button title="Clique para assistir o vídeo de apresentação do SP Acessível." id="videoWatch"  ng-dialog="views/videoPopup.html"
     ng-dialog-class="ngdialog-theme-plain"
-    ng-dialog-close-previous>Assista <i class="fa fa-play"></i></button>
+    ng-dialog-close-previous >Assista <i class="fa fa-play"></i></button>
     </div>
-
-
   </article>
-
 
 </section>

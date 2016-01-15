@@ -8,7 +8,7 @@
  require('angularfire');
 
  //npm install
- //require('angular-aria');
+ require('angular-aria');
  //require('angular-messages');
  //require('angular-material');
 
@@ -18,7 +18,7 @@
 
 
 var spAcessLan = angular.module('spAcessLan', [
-  'ngRoute', 'ngDialog', 'ngSanitize', 'firebase'
+  'ngRoute', 'ngDialog', 'ngSanitize', 'firebase', 'ngAria'
 ])
 .constant('FIREBASE_URL', 'https://spacessivelfire.firebaseio.com/')
 .filter('to_trusted', ['$sce', function($sce){

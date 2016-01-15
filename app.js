@@ -4,9 +4,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
 var router = express.Router();
 
 var app = express();
+
+app.use(require('prerender-node').set('prerenderToken', 'oxdXV3HhiWWvzj6thKFj'));
+
+
 var port=process.env.PORT || 3000;
 
 var folder='builds/production/';

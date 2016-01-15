@@ -24,6 +24,9 @@ html {
     display: block;
 }
 
+.acsbld {
+  display: none !important;
+}
 
 /* video section */
 section.video{
@@ -42,7 +45,6 @@ section.video{
   @media screen and (max-width: $medium-small) {
      height: 674px;
    }
-
 
 
 
@@ -205,7 +207,6 @@ section.email {
         border: none;
         margin: 0px;
         padding: 0;
-
       }
       //medium screeen
       @media screen and (max-width: $medium-small)
