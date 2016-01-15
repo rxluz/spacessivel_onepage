@@ -18,7 +18,7 @@
   <div class="row">
     <div class="column">
       <div class="content">
-        <h3>Sobre n&#243;s</h3>{{aboutUs  | toHtml}}
+        <h3>Sobre n&#243;s</h3><div ng-bind-html="aboutUs  | to_trusted"></div>
       </div>
     </div>
     <div class="column">
@@ -35,7 +35,8 @@
     </div>
     <div class="column">
       <div class="content">
-        <h3>Contato</h3>{{links | toHtml}}
+        <h3>Contato</h3>
+        <div ng-bind-html="links | to_trusted"></div>
       </div>
     </div>
   </div>

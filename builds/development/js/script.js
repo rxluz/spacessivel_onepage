@@ -20,7 +20,13 @@
 
 var spAcessLan = angular.module('spAcessLan', [
   'ngRoute', 'ngDialog', 'ngSanitize', 'firebase'
-]).constant('FIREBASE_URL', 'https://spacessivelfire.firebaseio.com/');
+])
+.constant('FIREBASE_URL', 'https://spacessivelfire.firebaseio.com/')
+.filter('to_trusted', ['$sce', function($sce){
+    return function(text) {
+        return $sce.trustAsHtml(text);
+    }
+}]);
 
 
 spAcessLan.config(['$routeProvider', function($routeProvider) {
@@ -48,21 +54,13 @@ spAcessLan.factory('FeedService',['$http',function($http){
   }
 }]);
 
-
+//TRATA O MATERIAL QUE SERÁ VISTO NA SEÇÃO BLOG
 spAcessLan.filter('viewBlog', ['$sce', function($sce){
   return function(val)
   {
     val = val.replace('Continue reading on Medium »', '');
     val = val.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
     val = val.substring(0, 32);
-    return $sce.trustAsHtml(val);
-  };
-}]);
-
-//TRATA AS STRINGS JSON PARA SEREM PROCESSADAS COMO HTML
-spAcessLan.filter('toHtml', ['$sce', function($sce){
-  return function(val)
-  {
     return $sce.trustAsHtml(val);
   };
 }]);
@@ -119,7 +117,7 @@ spAcessLan
     $scope.videoSP =response.videoSP;
     $scope.aboutUs =response.aboutUs;
     //$scope.blog =response.blog;
-    $scope.links =response.links;
+    $scope.links = response.links;
     //console.log("init: "+$scope.social.blog.feed);
 
     Feed.parseFeed($scope.social.blog.feed).then(function(res){
