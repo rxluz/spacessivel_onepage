@@ -32,7 +32,16 @@ section.video {
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: 100%;
-  height: 568px;
+}
+@media screen and (min-width: 897px) {
+  section.video {
+    height: 568px;
+  }
+}
+@media screen and (max-width: 897px) {
+  section.video {
+    height: 674px;
+  }
 }
 section.video .logo-sp-back {
   text-align: center;
@@ -74,8 +83,9 @@ section.video .about .text {
 @media screen and (max-width: 897px) {
   section.video .about .text {
     width: 87%;
-    margin: 28px;
-    color: gray;
+    margin-left: 21px;
+    margin-top: -32px;
+    color: black;
     font-weight: 300;
   }
 }
@@ -171,7 +181,7 @@ section.email .center {
 }
 @media screen and (max-width: 897px) {
   section.email .center {
-    width: 92%;
+    width: 100%;
   }
   section.email .center .text {
     padding: 21px;
