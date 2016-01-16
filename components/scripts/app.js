@@ -28,7 +28,12 @@ var spAcessLan = angular.module('spAcessLan', [
 }]);
 
 
-spAcessLan.config(['$routeProvider', function($routeProvider) {
+
+
+spAcessLan.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+  $locationProvider.html5Mode(false);
+  $locationProvider.hashPrefix('!');
+
   $routeProvider.
   when('/', {
     templateUrl: 'views/home.html',
@@ -42,6 +47,7 @@ spAcessLan.config(['$routeProvider', function($routeProvider) {
     redirectTo: '/'
   });
 }]);
+
 
 
 
