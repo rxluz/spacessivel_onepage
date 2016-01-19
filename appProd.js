@@ -41,6 +41,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
+var oneDay = 86400000;
+
 
 
 app.use(express.static(path.join(__dirname, folder), {maxAge : oneDay*30 }));
