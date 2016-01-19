@@ -45,7 +45,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, folder)));
+
+var oneDay = 86400000;
+
+
+app.use(express.static(path.join(__dirname, folder), {maxAge : oneDay*30 }));
 
 ///app.locals.appdata = require('./data.json');
 app.use('/', router);
