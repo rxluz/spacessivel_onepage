@@ -150,7 +150,7 @@ gulp.task('js', function() {
   gulp.src(jsSources)
     .pipe(concat('script.js'))
     .pipe(browserify())
-    //.pipe(uglify())
+    //.pipe(uglify({mangle: false}))
     .pipe(gulp.dest(outputDirDev + 'js'))
     .pipe(connect.reload())
 });
@@ -164,7 +164,7 @@ gulp.task('js_prod', function() {
   gulp.src(jsSources)
     .pipe(concat('script.js'))
     .pipe(browserify())
-    .pipe(uglify())
+    .pipe(uglify({mangle: false}))
     .pipe(gulp.dest(outputDir + 'js'))
     .pipe(connect.reload())
 });
