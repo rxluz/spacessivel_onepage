@@ -4,9 +4,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var compression = require('compression');
+
+
 var router = express.Router();
 
 var app = express();
+app.use(compression()); //use compression
+
 app.use(require('prerender-node').set('prerenderToken', 'oxdXV3HhiWWvzj6thKFj'));
 
 app.get('/*', function(req, res, next) {
@@ -60,7 +65,7 @@ router.get('/', function(req, res) {
 
 /* GET home page. */
 router.get('*', function(req, res) {
-  res.sendfile( __dirname + folder+'404.html');
+  res.sendfile( __dirname + folder+'index.html');
 });
 
 module.exports = app;

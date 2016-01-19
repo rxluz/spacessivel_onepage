@@ -31,17 +31,13 @@ var spAcessLan = angular.module('spAcessLan', [
 
 
 spAcessLan.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.html5Mode(false);
+
   $locationProvider.hashPrefix('!');
 
   $routeProvider.
   when('/', {
     templateUrl: 'views/home.html',
     controller: 'spBase'
-  }).
-  when('/video', {
-    templateUrl: 'views/video.html',
-    controller: 'spVideo'
   }).
   otherwise({
     redirectTo: '/'
@@ -101,11 +97,13 @@ spAcessLan.factory('Authentication',
 
       var postsRef = regRef.child("mailling");
 
+      //postsRef.remove();
+
       var newPostRef = postsRef.push();
       // we can also chain the two calls together
       postsRef.push().set({
-        name: user.name,
-        email: user.email
+       name: user.name,
+       email: user.email
       });
 
     } // register
