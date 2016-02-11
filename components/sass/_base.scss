@@ -286,7 +286,7 @@ section.email {
 
 
 /* social section */
-.social {
+section.social {
   // //medium screeen
   // @media screen and (max-width: $medium-small){
   //   height: 1450px;
@@ -484,7 +484,65 @@ section.email {
 } //social
 
 
+/* sponsors section */
+section.sponsors {
+  // //medium screeen
+  // @media screen and (max-width: $medium-small){
+  //   height: 1450px;
+  // }
+  //
+  // //large screen
+  // @media screen and (min-width: $medium-small) {
+  //   height: 650px;
+  // }
+  height: auto;
 
+  background-color: #D6D6D6;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  width: 100%;
+  position: relative;
+  top: -3px;
+
+  .arrow-down {
+    @include arrow_down(#dc373e);
+  }
+
+
+  .row {
+    width: 100%;
+    margin-bottom: 10px;
+
+    .title
+    {
+      //medium screeen
+      @media screen and (max-width: $medium-small)
+      {
+        width: 80%;
+      }
+
+      //large screen
+      @media screen and (min-width: $medium-small) {
+        width: 50%;
+      }
+
+      margin: 0 auto;
+      position: relative;
+      h2 {
+        color: white;
+        text-align: center;
+      }
+    } //title
+
+    img{
+      max-width: calc(100% - 20px);
+    }
+
+
+  }//row
+
+} //social
 
 
 
@@ -501,7 +559,7 @@ footer {
   position: relative;
 
   .arrow-down {
-    @include arrow_down(rgb(220, 55, 62));
+    @include arrow_down(#D6D6D6);
   }
 
 
